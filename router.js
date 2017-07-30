@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const jsr = require('jsrender');
-// const md = require('mobile-detect');
+const md = require('mobile-detect');
 
-//const grid = require('./mod/grid');
+const grid = require('./mod/grid');
 
 router.get('/', function (req, res) {
     // let _md = new md(req.headers['user-agent']),
@@ -20,6 +20,6 @@ router.get('/', function (req, res) {
     res.send(jsr.templates('./views/desktop.html').render());
 });
 
-// router.get('/q_grid', grid.grid);
+router.get('/q_grid', grid.grid);
 
 module.exports = router;
