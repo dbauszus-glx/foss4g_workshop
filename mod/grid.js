@@ -1,6 +1,6 @@
 const promise = require('bluebird');
 const pgp = require('pg-promise')({promiseLib: promise, noWarnings: true});
-const db = pgp(process.env.POSTGRES);
+const db = pgp(process.env.POSTGRES || 'postgres://user:user@localhost:5432/ghs');
 
 function grid(req, res) {
     db.any('SELECT lon, lat, ' +

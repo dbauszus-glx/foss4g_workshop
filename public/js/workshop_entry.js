@@ -17,6 +17,7 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_label
 map.createPane('grid');
 map.getPane('grid').style.zIndex = 550;
 map.getPane('grid').style.pointerEvents = 'none';
+
 const layerGrid = {
     map: map,
     pane: 'grid',
@@ -147,30 +148,6 @@ const layerGrid = {
         ror_other__11: 'Origin is not indicated or otherwise classifiable',
         ror_scotland__11: 'Origin in Scotland',
         ror_wales__11: 'Origin in Wales',
-        ret_african_brit__11: 'British African',
-        ret_bandladeshi_brit__11: 'British Bangladeshi',
-        ret_caribbean_brit__11: 'British Caribbean',
-        ret_chinese_brit__11: 'British Chinese',
-        ret_indian_brit__11: 'British Indian',
-        ret_mixed__11: 'Ethnic Mixed or Multiple ethnic group',
-        ret_other__11: 'Other ethnic group ',
-        ret_otherasian_brit__11: 'Ethnic Asian/Asian British Other Asian',
-        ret_otherblack_brit__11: 'British Other Black',
-        ret_pakistani_brit__11: 'British Pakistani',
-        ret_white_brit__11: 'Ethnic White including nationalities Irish and gypsy travellers',
-        ret_white_other__11: 'Ethnic all White ethnicities',
-        ret_white_tot__11: 'Ethnic White including White British White Irish and traveller',
-        rcz_africa__11: 'Citizen of African countries',
-        rcz_asia__11: 'Citizen of Asian countries',
-        rcz_central_america__11: 'Citizen of Central American countries',
-        rcz_eu__11: 'Citizen of an EU member state',
-        rcz_europe__11: 'Citizen of an European country',
-        rcz_north_america__11: 'Citizen of North American countries',
-        rcz_oceania__11: 'Citizen of countries belonging to Oceania',
-        rcz_roi__11: 'Citizen of the Republic of Ireland',
-        rcz_south_america__11: 'Citizen of South American countries',
-        rcz_stateless__11: 'Stateless unsettled or unknown citizenship',
-        rcz_uk__11: 'Citizen of the UK',
         rel_buddhist__11: 'Religion Buddhist',
         rel_catholic__11: 'Religion Catholic',
         rel_christian__11: 'Religion All Christan',
@@ -189,9 +166,7 @@ const layerGrid = {
         7: 'gb_hx_32k',
         8: 'gb_hx_16k',
         9: 'gb_hx_8k',
-        10: 'gb_hx_4k',
-        11: 'gb_hx_2k',
-        12: 'gb_hx_1k'
+        10: 'gb_hx_4k'
     }
 };
 
