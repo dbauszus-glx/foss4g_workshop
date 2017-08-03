@@ -18,21 +18,25 @@ map.createPane('grid');
 map.getPane('grid').style.zIndex = 550;
 map.getPane('grid').style.pointerEvents = 'none';
 
+function dot(colorB, colorT) {
+    return encodeURI('data:image/svg+xml,<svg width="866" height="1000" xmlns="http://www.w3.org/2000/svg"><metadata id="metadata1">image/svg+xml</metadata><circle fill="' + colorT + '" cx="466" cy="532" r="395"/><circle fill="' + colorB + '" cx="400" cy="468" r="395"/></svg>').replace('#','%23');
+}
+
 const layerGrid = {
     map: map,
     pane: 'grid',
     queryID: 'qid',
     arrayStyle: [
-        'icons/dot_1a9850.svg', //0
-        'icons/dot_66bd63.svg', //1
-        'icons/dot_a6d96a.svg', //2
-        'icons/dot_d9ef8b.svg', //3
-        'icons/dot_ffffbf.svg', //4
-        'icons/dot_fee08b.svg', //5
-        'icons/dot_fdae61.svg', //6
-        'icons/dot_f46d43.svg', //7
-        'icons/dot_d73027.svg', //8
-        'icons/dot_clear.svg'
+        dot('#1a9850','#1b7540'), //0
+        dot('#66bd63','#1a9850'), //1
+        dot('#a6d96a','#66bd63'), //2
+        dot('#d9ef8b','#a6d96a'), //3
+        dot('#ffffbf','#fee08b'), //4
+        dot('#fee08b','#fdae61'), //5
+        dot('#fdae61','#f46d43'), //6
+        dot('#f46d43','#d73027'), //7
+        dot('#d73027','#a02620'), //8
+        dot('fill:#ffffff;fill-opacity:0.1','fill:#000000;fill-opacity:0.1')
     ],
     queryCount: 'pop__01',
     queryValue: 'pop__11',
