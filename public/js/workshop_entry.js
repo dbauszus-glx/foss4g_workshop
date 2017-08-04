@@ -181,4 +181,4 @@ const layerGrid = {
     }
 };
 
-// require('./grid')(layerGrid);
+require('./grid')(layerGrid);
