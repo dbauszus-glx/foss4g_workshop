@@ -14,19 +14,9 @@ map.getPane('labels').style.zIndex = 650;
 map.getPane('labels').style.pointerEvents = 'none';
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map);
 
-// map.createPane('grid');
-// map.getPane('grid').style.zIndex = 550;
-// map.getPane('grid').style.pointerEvents = 'none';
-
 function dot(colorB, colorT) {
-    //return 'data:image/svg+xml,' + window.btoa('<svg width="866px" height="1000px" xmlns="http://www.w3.org/2000/svg"><metadata id="metadata1">image/svg+xml</metadata><circle fill="' + colorT + '" cx="466" cy="532" r="395"/><circle fill="' + colorB + '" cx="400" cy="468" r="395"/></svg>');//.replace('#','%23');
-
-    //return encodeURI('data:image/svg+xml, <svg width="866px" height="1000px" xmlns="http://www.w3.org/2000/svg"><metadata id="metadata1">image/svg+xml</metadata><circle fill="' + colorT + '" cx="466" cy="532" r="395"/><circle fill="' + colorB + '" cx="400" cy="468" r="395"/></svg>');//.replace('#','%23');
-
-    // return encodeURI("data:image/svg+xml;utf8, <svg width='866px' height='1000px' xmlns='http://www.w3.org/2000/svg'><metadata id='metadata1'>image/svg+xml</metadata><circle fill='" + colorT + "' cx='466' cy='532' r='395'/><circle fill='" + colorB + "' cx='400' cy='468' r='395'/></svg>");
-
-    return "data:image/svg+xml,%3Csvg%20width%3D%27866%27%20height%3D%271000%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Ccircle%20fill%3D%27%231b7540%27%20cx%3D%27466%27%20cy%3D%27532%27%20r%3D%27395%27/%3E%3Ccircle%20fill%3D%27%231a9850%27%20cx%3D%27400%27%20cy%3D%27468%27%20r%3D%27395%27/%3E%3C/svg%3E";
-
+    //<svg width='866px' height='1000px' xmlns='http://www.w3.org/2000/svg'><circle fill='" + colorT + "' cx='466' cy='532' r='395'/><circle fill='" + colorB + "' cx='400' cy='468' r='395'/></svg>
+    return ("data:image/svg+xml,%3Csvg%20width%3D%27866%27%20height%3D%271000%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Ccircle%20fill%3D%27" + colorT + "%27%20cx%3D%27466%27%20cy%3D%27532%27%20r%3D%27395%27/%3E%3Ccircle%20fill%3D%27" + colorB + "%27%20cx%3D%27400%27%20cy%3D%27468%27%20r%3D%27395%27/%3E%3C/svg%3E").replace(/#/g,"%23");
 }
 
 const layerGrid = {
@@ -43,7 +33,7 @@ const layerGrid = {
         dot('#fdae61','#f46d43'), //6
         dot('#f46d43','#d73027'), //7
         dot('#d73027','#a02620'), //8
-        dot('fill:#ffffff;fill-opacity:0.1','fill:#000000;fill-opacity:0.1')
+        dot('fill%3A#ffffff%3Bfill-opacity%3A0.1','fill%3A#000000%3Bfill-opacity%3A0.1')
     ],
     queryCount: 'pop__01',
     queryValue: 'pop__01',

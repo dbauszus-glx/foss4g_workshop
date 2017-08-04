@@ -14,53 +14,48 @@ function Grid(_this) {
         getGridData(_this);
     });
 
-    //_this.getGridData = getGridData;
-
     getGridData(_this);
 
 }
 
 function gridStyle(_f, _layer){
     let dot,
-        arrayStyle = _layer.arrayStyle
-        // arraySize = _layer.arraySize,
-        // arrayColor = _layer.arrayColor,
-        // c = _f.properties.c,
-        // v = _f.properties.v;
+        arrayStyle = _layer.arrayStyle,
+        arraySize = _layer.arraySize,
+        arrayColor = _layer.arrayColor,
+        c = _f.properties.c,
+        v = _f.properties.v;
 
-    // let size = c < arraySize[1] ? 7 :
-    //     c < arraySize[2] ? 8 :
-    //         c < arraySize[3] ? 9 :
-    //             c < arraySize[4] ? 10 :
-    //                 c <= arraySize[5] ? 11 :
-    //                     c < arraySize[6] ? 12 :
-    //                         c < arraySize[7] ? 14 :
-    //                             c < arraySize[8] ? 16 :
-    //                                 18;
-    //
-    // if (v === null || v === 0 || isNaN(v)) {
-    //     dot = arrayStyle[0];
-    // } else {
-    //     dot = v < arrayColor[1] ? arrayStyle[0] :
-    //         v < arrayColor[2] ? arrayStyle[1] :
-    //             v < arrayColor[3] ? arrayStyle[2] :
-    //                 v < arrayColor[4] ? arrayStyle[3] :
-    //                     v < arrayColor[5] ? arrayStyle[4] :
-    //                         v < arrayColor[6] ? arrayStyle[5] :
-    //                             v < arrayColor[7] ? arrayStyle[6] :
-    //                                 v < arrayColor[8] ? arrayStyle[7] :
-    //                                     v <= arrayColor[9] ? arrayStyle[8] :
-    //                                         arrayStyle[9];
-    //}
+    let size = c < arraySize[1] ? 7 :
+        c < arraySize[2] ? 8 :
+            c < arraySize[3] ? 9 :
+                c < arraySize[4] ? 10 :
+                    c <= arraySize[5] ? 11 :
+                        c < arraySize[6] ? 12 :
+                            c < arraySize[7] ? 14 :
+                                c < arraySize[8] ? 16 :
+                                    18;
+
+    if (v === null || v === 0 || isNaN(v)) {
+        dot = arrayStyle[0];
+    } else {
+        dot = v < arrayColor[1] ? arrayStyle[0] :
+            v < arrayColor[2] ? arrayStyle[1] :
+                v < arrayColor[3] ? arrayStyle[2] :
+                    v < arrayColor[4] ? arrayStyle[3] :
+                        v < arrayColor[5] ? arrayStyle[4] :
+                            v < arrayColor[6] ? arrayStyle[5] :
+                                v < arrayColor[7] ? arrayStyle[6] :
+                                    v < arrayColor[8] ? arrayStyle[7] :
+                                        v <= arrayColor[9] ? arrayStyle[8] :
+                                            arrayStyle[9];
+    }
 
     return {
         icon: L.icon({
-            // iconUrl: dot,
-            // iconSize: size
-            iconUrl: arrayStyle[0],
-            iconSize: [10,10]
+            iconUrl: dot,
+            iconSize: size
         }),
-        //pane: _layer.pane,
         interactive: false
     };
 }
@@ -104,12 +99,12 @@ function drawGrid(_this, _data) {
         let c = parseFloat(_data[i].c),
             v = parseFloat(_data[i].v);
 
-        //if (c > 0) {
+        if (c > 0) {
 
-            // if (_this.calcRatio === true && v > 0) {
-            //     v /= c;
-            //     _data[i].v = v;
-            // }
+            if (_this.calcRatio === true && v > 0) {
+                v /= c;
+                _data[i].v = v;
+            }
 
             let g = {
                     "type": "Point",
@@ -121,56 +116,56 @@ function drawGrid(_this, _data) {
                     "id": _data[i].id || null
                 };
 
-            // avg_c += c;
-            // avg_v += v;
+            avg_c += c;
+            avg_v += v;
 
             dots.features.push({
                 "geometry": g,
                 "type": "Feature",
                 "properties": p
             });
-        //}
+        }
     }
 
-    // let min = getMath(_data, 'c', 'min'),
-    //     max = getMath(_data, 'c', 'max'),
-    //     avg = avg_c / n,
-    //     step_lower = (avg - min) / 5,
-    //     step_upper = (max - avg) / 4;
-    //
-    // arraySize[0] = min;
-    // arraySize[1] = min + step_lower;
-    // arraySize[2] = min + (step_lower * 2);
-    // arraySize[3] = min + (step_lower * 3);
-    // arraySize[4] = min + (step_lower * 4);
-    // arraySize[5] = avg;
-    // arraySize[6] = avg + step_upper;
-    // arraySize[7] = avg + (step_upper * 2);
-    // arraySize[8] = avg + (step_upper * 3);
-    // arraySize[9] = max;
-    //
-    // _this.arraySize = arraySize;
-    //
-    // if (avg_v > 0) {
-    //     min = getMath(_data, 'v', 'min');
-    //     max = getMath(_data, 'v', 'max');
-    //     avg = avg_v / n;
-    //     step_lower = (avg - min) / 5;
-    //     step_upper = (max - avg) / 4;
-    //
-    //     arrayColor[0] = min;
-    //     arrayColor[1] = min + step_lower;
-    //     arrayColor[2] = min + (step_lower * 2);
-    //     arrayColor[3] = min + (step_lower * 3);
-    //     arrayColor[4] = min + (step_lower * 4);
-    //     arrayColor[5] = avg;
-    //     arrayColor[6] = avg + step_upper;
-    //     arrayColor[7] = avg + (step_upper * 2);
-    //     arrayColor[8] = avg + (step_upper * 3);
-    //     arrayColor[9] = max;
-    // }
-    //
-    // _this.arrayColor = arrayColor;
+    let min = getMath(_data, 'c', 'min'),
+        max = getMath(_data, 'c', 'max'),
+        avg = avg_c / n,
+        step_lower = (avg - min) / 5,
+        step_upper = (max - avg) / 4;
+
+    arraySize[0] = min;
+    arraySize[1] = min + step_lower;
+    arraySize[2] = min + (step_lower * 2);
+    arraySize[3] = min + (step_lower * 3);
+    arraySize[4] = min + (step_lower * 4);
+    arraySize[5] = avg;
+    arraySize[6] = avg + step_upper;
+    arraySize[7] = avg + (step_upper * 2);
+    arraySize[8] = avg + (step_upper * 3);
+    arraySize[9] = max;
+
+    _this.arraySize = arraySize;
+
+    if (avg_v > 0) {
+        min = getMath(_data, 'v', 'min');
+        max = getMath(_data, 'v', 'max');
+        avg = avg_v / n;
+        step_lower = (avg - min) / 5;
+        step_upper = (max - avg) / 4;
+
+        arrayColor[0] = min;
+        arrayColor[1] = min + step_lower;
+        arrayColor[2] = min + (step_lower * 2);
+        arrayColor[3] = min + (step_lower * 3);
+        arrayColor[4] = min + (step_lower * 4);
+        arrayColor[5] = avg;
+        arrayColor[6] = avg + step_upper;
+        arrayColor[7] = avg + (step_upper * 2);
+        arrayColor[8] = avg + (step_upper * 3);
+        arrayColor[9] = max;
+    }
+
+    _this.arrayColor = arrayColor;
     //gridLegend(_this);
 
     if (_this.layer) _this.map.removeLayer(_this.layer);
