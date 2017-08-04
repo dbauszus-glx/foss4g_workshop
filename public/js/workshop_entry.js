@@ -8,7 +8,7 @@ const map = L.map('map', {
     maxZoom: 15
 }).setView([54, -2], 6);
 
-// L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 // map.createPane('labels');
 // map.getPane('labels').style.zIndex = 650;
 // map.getPane('labels').style.pointerEvents = 'none';
@@ -25,7 +25,7 @@ function dot(colorB, colorT) {
 
     // return encodeURI("data:image/svg+xml;utf8, <svg width='866px' height='1000px' xmlns='http://www.w3.org/2000/svg'><metadata id='metadata1'>image/svg+xml</metadata><circle fill='" + colorT + "' cx='466' cy='532' r='395'/><circle fill='" + colorB + "' cx='400' cy='468' r='395'/></svg>");
 
-    return "data:image/svg+xml,%3Csvg%20width%3D%27866px%27%20height%3D%271000px%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cmetadata%20id%3D%27metadata1%27%3Eimage/svg+xml%3C/metadata%3E%3Ccircle%20fill%3D%27%231b7540%27%20cx%3D%27466%27%20cy%3D%27532%27%20r%3D%27395%27/%3E%3Ccircle%20fill%3D%27%231a9850%27%20cx%3D%27400%27%20cy%3D%27468%27%20r%3D%27395%27/%3E%3C/svg%3E";
+    return "data:image/svg+xml,%3Csvg%20width%3D%27866%27%20height%3D%271000%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Ccircle%20fill%3D%27%231b7540%27%20cx%3D%27466%27%20cy%3D%27532%27%20r%3D%27395%27/%3E%3Ccircle%20fill%3D%27%231a9850%27%20cx%3D%27400%27%20cy%3D%27468%27%20r%3D%27395%27/%3E%3C/svg%3E";
 
 }
 
