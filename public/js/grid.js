@@ -55,8 +55,8 @@ function gridStyle(_f, _layer){
 
     return {
         icon: L.icon({
-            iconUrl: dot,
-            iconSize: size
+            iconUrl: arrayStyle[0],
+            iconSize: 10
         }),
         pane: _layer.pane,
         interactive: false
