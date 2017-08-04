@@ -60,7 +60,7 @@ function gridStyle(_f, _layer){
             iconUrl: arrayStyle[0],
             iconSize: [10,10]
         }),
-        pane: _layer.pane,
+        //pane: _layer.pane,
         interactive: false
     };
 }
