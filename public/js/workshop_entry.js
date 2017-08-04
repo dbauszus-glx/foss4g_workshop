@@ -32,8 +32,7 @@ const layerGrid = {
         dot('#fee08b','#fdae61'), //5
         dot('#fdae61','#f46d43'), //6
         dot('#f46d43','#d73027'), //7
-        dot('#d73027','#a02620'), //8
-        dot('fill%3A#ffffff%3Bfill-opacity%3A0.1','fill%3A#000000%3Bfill-opacity%3A0.1')
+        dot('#d73027','#a02620')  //8
     ],
     queryCount: 'pop__01',
     queryValue: 'pop__01',

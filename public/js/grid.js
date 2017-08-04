@@ -16,6 +16,43 @@ function Grid(_this) {
 
     getGridData(_this);
 
+    let entries = '';
+    for (let key in _this.queryFields) {
+        if (_this.queryFields.hasOwnProperty(key)) {
+            entries += '<option value="'+_this.queryFields[key]+'">' + _this.queryFields[key] + '</option>';
+        }
+    }
+    document.getElementById('grid_size_select').innerHTML = entries;
+    document.getElementById('grid_colour_select').innerHTML = entries;
+
+    let queryFieldKeys = Object.keys(_this.queryFields);
+
+    document.getElementById('sizeTitle').innerHTML = _this.queryFields[queryFieldKeys[0]];
+    _this.queryCount = queryFieldKeys[0];
+
+    document.getElementById('colourTitle').innerHTML = _this.queryFields[queryFieldKeys[0]];
+    _this.queryValue = queryFieldKeys[0];
+
+    document.getElementById('grid_size').onchange = function(){
+        if (_this.layer) _this.map.removeLayer(_this.layer);
+        document.getElementById('sizeTitle').innerHTML = event.target.value;
+        _this.queryCount = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
+        getGridData(_this);
+    };
+
+    document.getElementById('grid_colour').onchange = function(){
+        if (_this.layer) _this.map.removeLayer(_this.layer);
+        document.getElementById('colourTitle').innerHTML = event.target.value;
+        _this.queryValue = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
+        getGridData(_this);
+    };
+
+    document.getElementById('chkGridRatio').addEventListener('click', function(){
+        if (_this.layer) _this.map.removeLayer(_this.layer);
+        _this.calcRatio = this.checked;
+        getGridData(_this);
+    });
+
 }
 
 function gridStyle(_f, _layer){
@@ -48,7 +85,7 @@ function gridStyle(_f, _layer){
                                 v < arrayColor[7] ? arrayStyle[6] :
                                     v < arrayColor[8] ? arrayStyle[7] :
                                         v <= arrayColor[9] ? arrayStyle[8] :
-                                            arrayStyle[9];
+                                            null;
     }
 
     return {
@@ -166,7 +203,8 @@ function drawGrid(_this, _data) {
     }
 
     _this.arrayColor = arrayColor;
-    //gridLegend(_this);
+
+    gridLegend(_this);
 
     if (_this.layer) _this.map.removeLayer(_this.layer);
 
