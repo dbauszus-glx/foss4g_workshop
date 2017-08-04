@@ -39,7 +39,7 @@ const layerGrid = {
         dot('fill:#ffffff;fill-opacity:0.1','fill:#000000;fill-opacity:0.1')
     ],
     queryCount: 'pop__01',
-    queryValue: 'pop__11',
+    queryValue: 'pop__01',
     queryFields: {
         pop__01: 'Population 2001',
         pop__11: 'Population 2011',
