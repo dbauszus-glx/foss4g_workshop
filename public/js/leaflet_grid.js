@@ -1,5 +1,3 @@
-const L = require('./leaflet-src');
-
 function Grid(_this) {
 
     _this.map.on('movestart', function () {
@@ -33,14 +31,14 @@ function Grid(_this) {
     document.getElementById('colourTitle').innerHTML = _this.queryFields[queryFieldKeys[0]];
     _this.queryValue = queryFieldKeys[0];
 
-    document.getElementById('grid_size').onchange = function(){
+    document.getElementById('grid_size_select').onchange = function(){
         if (_this.layer) _this.map.removeLayer(_this.layer);
         document.getElementById('sizeTitle').innerHTML = event.target.value;
         _this.queryCount = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
         getGridData(_this);
     };
 
-    document.getElementById('grid_colour').onchange = function(){
+    document.getElementById('grid_colour_select').onchange = function(){
         if (_this.layer) _this.map.removeLayer(_this.layer);
         document.getElementById('colourTitle').innerHTML = event.target.value;
         _this.queryValue = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
@@ -149,8 +147,7 @@ function drawGrid(_this, _data) {
                 },
                 p = {
                     "c": c,
-                    "v": v,
-                    "id": _data[i].id || null
+                    "v": v
                 };
 
             avg_c += c;
@@ -259,7 +256,7 @@ function getGridData(_this){
                 north: bounds.getNorth()
             });
 
-        xhr.open('GET', '/q_grid?' + requestURL);
+        xhr.open('GET', '/workshop/q_grid?' + requestURL);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function() {
             if (xhr.status === 200) {

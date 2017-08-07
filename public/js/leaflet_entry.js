@@ -1,14 +1,30 @@
-const L = require('./leaflet-src');
-
 const map = L.map('map', {
     renderer: L.svg(),
     scrollWheelZoom: true,
-    //maxBounds: L.latLngBounds(L.latLng(30, -25), L.latLng(72, 47)),
+    maxBounds: L.latLngBounds(L.latLng(47, -12), L.latLng(65, 5)),
     minZoom: 6,
     maxZoom: 15
-}).setView([54, -2], 6);
+}).setView([55, -2], 6);
 
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+
+//load geojson in case there is no internet connection during the workshop
+let xhr = new XMLHttpRequest();
+xhr.open('GET', 'uk_outline.geojson');
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        new L.geoJson(JSON.parse(xhr.responseText), {
+            style: {
+                "color": "#000",
+                "weight": 1,
+                "opacity": 0.1
+            }
+        }).addTo(map);
+    }
+};
+xhr.send();
+
 map.createPane('labels');
 map.getPane('labels').style.zIndex = 650;
 map.getPane('labels').style.pointerEvents = 'none';
@@ -170,4 +186,5 @@ const layerGrid = {
     }
 };
 
-require('./grid')(layerGrid);
+require('./leaflet_grid')(layerGrid);
+

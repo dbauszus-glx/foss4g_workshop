@@ -2,7 +2,8 @@ let path = require('path');
 
 module.exports = {
     entry: {
-        workshop: './public/js/workshop_entry.js'
+        leaflet: './public/js/leaflet_entry.js',
+        openlayers: './public/js/openlayers_entry.js'
     },
     output: {
         filename: 'build/[name]_bundle.js',
