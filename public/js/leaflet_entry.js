@@ -16,9 +16,10 @@ xhr.onload = function () {
     if (xhr.status === 200) {
         new L.geoJson(JSON.parse(xhr.responseText), {
             style: {
-                "color": "#000",
-                "weight": 1,
-                "opacity": 0.1
+                'color': '#000',
+                'weight': 1,
+                'fillColor': '#000',
+                'fillOpacity': 0.1
             }
         }).addTo(map);
     }
