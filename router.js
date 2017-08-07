@@ -40,9 +40,9 @@ router.get('/openlayers', function (req, res) {
     }
 
     res.send(tmpl.render({
-        engine_css: 'ol.4.css',
+        engine_css: 'ol.css',
         platform_css: platform_css,
-        engine_js: 'ol.4.js',
+        engine_js: 'ol.js',
         bundle_js: 'openlayers_bundle.js'
     }));
 });
