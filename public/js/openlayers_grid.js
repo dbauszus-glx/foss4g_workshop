@@ -24,21 +24,21 @@ function Grid(_this) {
     _this.queryValue = queryFieldKeys[0];
 
     document.getElementById('grid_size_select').onchange = function () {
-        if (_this.layer) _this.map.removeLayer(_this.layer);
+        if (_this.layer) _this.layer.getSource().clear();
         document.getElementById('sizeTitle').innerHTML = event.target.value;
         _this.queryCount = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
         getGridData(_this);
     };
 
     document.getElementById('grid_colour_select').onchange = function () {
-        if (_this.layer) _this.map.removeLayer(_this.layer);
+        if (_this.layer) _this.layer.getSource().clear();
         document.getElementById('colourTitle').innerHTML = event.target.value;
         _this.queryValue = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
         getGridData(_this);
     };
 
     document.getElementById('chkGridRatio').addEventListener('click', function () {
-        if (_this.layer) _this.map.removeLayer(_this.layer);
+        if (_this.layer) _this.layer.getSource().clear();
         _this.calcRatio = this.checked;
         getGridData(_this);
     });
