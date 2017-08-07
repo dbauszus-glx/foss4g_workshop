@@ -47,11 +47,6 @@ router.get('/openlayers', function (req, res) {
     }));
 });
 
-router.get('/', function (req, res) {
-    let tmpl = jsr.templates('./views/intro.html');
-    res.send(tmpl.render());
-});
-
 router.get('/q_grid', grid.grid);
 
 module.exports = router;
