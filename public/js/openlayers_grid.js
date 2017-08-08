@@ -1,8 +1,22 @@
 function Grid(_this) {
 
-    _this.map.on('moveend', function () {
-        getGridData(_this);
+    _this.map.getView().on('change:resolution', function() {
+        //console.log('pinch zoom or ol.control.Zoom zoom, but no one-finger drag');
+        changeEvent();
     });
+
+    _this.map.getView().on('change:center', function() {
+        //console.log('pinch zoom or one-finger drag, but no ol.control.Zoom zoom');
+        changeEvent();
+    });
+
+    let timer;
+    function changeEvent(){
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            getGridData(_this);
+        }, 150);
+    }
 
     getGridData(_this);
 
@@ -227,7 +241,7 @@ function Grid(_this) {
     }
 
     function getGridData(_this) {
-        let zoom = _this.map.getView().getZoom(),
+        let zoom = parseInt(_this.map.getView().getZoom()),
             zoomKeys = Object.keys(_this.arrayZoom),
             maxZoomKey = parseInt(zoomKeys[zoomKeys.length - 1]);
 

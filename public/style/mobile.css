@@ -30,6 +30,6 @@ body {
     padding: 0 10px 10px 10px;
 }
 
-.leaflet-control-attribution, .leaflet-control-container{
+.leaflet-control-attribution, .leaflet-control-container, .ol-control{
     display: none;
 }
