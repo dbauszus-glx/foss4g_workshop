@@ -4,7 +4,7 @@ module.exports = {
     entry: {
         leaflet: './public/js/leaflet_entry.js',
         openlayers: './public/js/openlayers_entry.js',
-        my_bundle: './public/js/my_script.js'
+        my: './public/js/my_script.js'
     },
     output: {
         filename: 'build/[name]_bundle.js',

@@ -106,15 +106,24 @@ function Grid(_this) {
 
         if (_this.calcRatio === true) fractionDigits = 2;
 
-        legend_text_v[0].innerHTML = (_this.arrayColor[1] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[1].innerHTML = (_this.arrayColor[2] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[2].innerHTML = (_this.arrayColor[3] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[3].innerHTML = (_this.arrayColor[4] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[4].innerHTML = (_this.arrayColor[5] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[5].innerHTML = (_this.arrayColor[6] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[6].innerHTML = (_this.arrayColor[7] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[7].innerHTML = (_this.arrayColor[8] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[8].innerHTML = (_this.arrayColor[9] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[0].innerHTML =
+            (_this.arrayColor[1] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[1].innerHTML =
+            (_this.arrayColor[2] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[2].innerHTML =
+            (_this.arrayColor[3] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[3].innerHTML =
+            (_this.arrayColor[4] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[4].innerHTML =
+            (_this.arrayColor[5] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[5].innerHTML =
+            (_this.arrayColor[6] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[6].innerHTML =
+            (_this.arrayColor[7] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[7].innerHTML =
+            (_this.arrayColor[8] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[8].innerHTML =
+            (_this.arrayColor[9] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
 
         let legend_text_c = document.getElementsByClassName('legend_text_c');
 
@@ -128,8 +137,6 @@ function Grid(_this) {
     function drawGrid(_this, _data) {
         let avg_c = 0,
             avg_v = 0,
-            arrayColor = [],
-            arraySize = [],
             n = _data.length,
             dots = {
                 type: "FeatureCollection",
@@ -168,7 +175,9 @@ function Grid(_this) {
             }
         }
 
-        let min = getMath(_data, 'c', 'min'),
+        let arraySize = [],
+            arrayColor = [],
+            min = getMath(_data, 'c', 'min'),
             max = getMath(_data, 'c', 'max'),
             avg = avg_c / n,
             step_lower = (avg - min) / 5,
@@ -268,6 +277,7 @@ function Grid(_this) {
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (xhr.status === 200) {
+                    //console.log(JSON.parse(xhr.responseText));
                     drawGrid(_this, JSON.parse(xhr.responseText))
                 }
             };

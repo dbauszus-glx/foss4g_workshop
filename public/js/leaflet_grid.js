@@ -236,11 +236,10 @@ function getGridData(_this){
         zoomKeys = Object.keys(_this.arrayZoom),
         maxZoomKey = parseInt(zoomKeys[zoomKeys.length - 1]);
 
-    zoom > maxZoomKey ?
-        _this.grid_layer = _this.arrayZoom[maxZoomKey] :
+    _this.grid_layer = zoom > maxZoomKey ?
+        _this.arrayZoom[maxZoomKey] :
         zoom < zoomKeys[0] ?
-            _this.grid_layer = null :
-            _this.grid_layer = _this.arrayZoom[zoom];
+            null : _this.arrayZoom[zoom];
 
     if (_this.grid_layer) {
         let xhr = new XMLHttpRequest(),

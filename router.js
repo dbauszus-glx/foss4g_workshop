@@ -43,7 +43,7 @@ router.get('/my_app', function (req, res) {
         engine_css: 'ol.css',
         platform_css: platform_css,
         engine_js: 'ol.js',
-        my_script_js: 'my_script.js'
+        my_script_js: 'my_bundle.js'
     }));
 });
 
