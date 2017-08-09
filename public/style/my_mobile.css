@@ -1,0 +1,38 @@
+body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Mono', monospace;
+}
+
+.map {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 100px);
+    margin-top: 0;
+}
+
+.spacer {
+    height: calc(100% - 100px);
+}
+
+.ctrl {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    min-height: 500px;
+    box-shadow: 0 0 10px slategrey;
+    text-align: left;
+    overflow-y: scroll;
+    padding: 0 10px 10px 10px;
+}
+
+.leaflet-control-attribution,
+.leaflet-control-container,
+.ol-control {
+    display: none;
+}

@@ -7,43 +7,43 @@ const grid = require('./mod/grid');
 
 router.get('/leaflet', function (req, res) {
     let _md = new md(req.headers['user-agent']),
-        _md_mobile = _md.mobile(),
-        _md_tablet = _md.tablet(),
-        platform_css,
-        tmpl = jsr.templates('./views/main.html');
+        platform_css = (_md.mobile() === null || _md.tablet() !== null) ?
+            'desktop.css' : 'mobile.css';
 
-    if (_md_mobile === null || _md_tablet !== null) {
-        platform_css = 'desktop.css';
-    } else {
-        platform_css = 'mobile.css';
-    }
-
-    res.send(tmpl.render({
-        engine_css: 'leaflet.css',
-        platform_css: platform_css,
-        engine_js: 'leaflet.js',
-        bundle_js: 'leaflet_bundle.js'
-    }));
+    res.send(jsr.templates('./views/main.html')
+        .render({
+            engine_css: 'leaflet.css',
+            platform_css: platform_css,
+            engine_js: 'leaflet.js',
+            bundle_js: 'leaflet_bundle.js'
+        }));
 });
 
 router.get('/openlayers', function (req, res) {
     let _md = new md(req.headers['user-agent']),
-        _md_mobile = _md.mobile(),
-        _md_tablet = _md.tablet(),
-        platform_css,
-        tmpl = jsr.templates('./views/main.html');
+        platform_css = (_md.mobile() === null || _md.tablet() !== null) ?
+            'desktop.css' : 'mobile.css';
 
-    if (_md_mobile === null || _md_tablet !== null) {
-        platform_css = 'desktop.css';
-    } else {
-        platform_css = 'mobile.css';
-    }
+    res.send(jsr.templates('./views/main.html')
+        .render({
+            engine_css: 'ol.css',
+            platform_css: platform_css,
+            engine_js: 'ol.js',
+            bundle_js: 'openlayers_bundle.js'
+        }));
+});
 
-    res.send(tmpl.render({
+router.get('/my_app', function (req, res) {
+    let _md = new md(req.headers['user-agent']),
+        platform_css =
+            (_md.mobile() === null || _md.tablet() !== null) ?
+                'my_desktop.css' : 'my_mobile.css';
+
+    res.send(jsr.templates('./views/my_main.html').render({
         engine_css: 'ol.css',
         platform_css: platform_css,
         engine_js: 'ol.js',
-        bundle_js: 'openlayers_bundle.js'
+        my_script_js: 'my_script.js'
     }));
 });
 

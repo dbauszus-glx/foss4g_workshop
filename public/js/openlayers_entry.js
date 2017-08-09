@@ -1,4 +1,4 @@
-let map = new ol.Map({
+const map = new ol.Map({
         target: 'map',
         view: new ol.View({
             center: ol.proj.fromLonLat([-2,55]),
