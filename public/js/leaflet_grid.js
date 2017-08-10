@@ -14,36 +14,27 @@ function Grid(_this) {
 
     getGridData(_this);
 
-    let entries = '';
-    for (let key in _this.queryFields) {
-        if (_this.queryFields.hasOwnProperty(key)) {
-            entries += '<option value="'+_this.queryFields[key]+'">' + _this.queryFields[key] + '</option>';
-        }
+    let queryFieldKeys = Object.keys(_this.queryFields),
+        entries = '';
+
+    queryFieldKeys.map(function (key) {
+        entries += '<option value="' + _this.queryFields[key] + '">' + _this.queryFields[key] + '</option>';
+    });
+
+    setDropDown('grid_size_select','sizeTitle','queryCount');
+    setDropDown('grid_colour_select','colourTitle','queryValue');
+
+    function setDropDown(select, title, query){
+        document.getElementById(select).innerHTML = entries;
+        document.getElementById(title).innerHTML = _this.queryFields[queryFieldKeys[0]];
+        _this[query] = queryFieldKeys[0];
+        document.getElementById(select).onchange = function () {
+            if (_this.layer) _this.map.removeLayer(_this.layer);
+            document.getElementById(title).innerHTML = event.target.value;
+            _this[query] = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
+            getGridData(_this);
+        };
     }
-    document.getElementById('grid_size_select').innerHTML = entries;
-    document.getElementById('grid_colour_select').innerHTML = entries;
-
-    let queryFieldKeys = Object.keys(_this.queryFields);
-
-    document.getElementById('sizeTitle').innerHTML = _this.queryFields[queryFieldKeys[0]];
-    _this.queryCount = queryFieldKeys[0];
-
-    document.getElementById('colourTitle').innerHTML = _this.queryFields[queryFieldKeys[0]];
-    _this.queryValue = queryFieldKeys[0];
-
-    document.getElementById('grid_size_select').onchange = function(){
-        if (_this.layer) _this.map.removeLayer(_this.layer);
-        document.getElementById('sizeTitle').innerHTML = event.target.value;
-        _this.queryCount = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
-        getGridData(_this);
-    };
-
-    document.getElementById('grid_colour_select').onchange = function(){
-        if (_this.layer) _this.map.removeLayer(_this.layer);
-        document.getElementById('colourTitle').innerHTML = event.target.value;
-        _this.queryValue = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
-        getGridData(_this);
-    };
 
     document.getElementById('chkGridRatio').addEventListener('click', function(){
         if (_this.layer) _this.map.removeLayer(_this.layer);
@@ -218,16 +209,12 @@ function getMath(_arr, _key, _type) {
     }))
 }
 
-function paramString(object) {
+function paramString(uri_param) {
     let encodedString = '';
-    for (let prop in object) {
-        if (object.hasOwnProperty(prop)) {
-            if (encodedString.length > 0) {
-                encodedString += '&';
-            }
-            encodedString += encodeURI(prop + '=' + object[prop]);
-        }
-    }
+    Object.keys(uri_param).map(function(key){
+        if (encodedString.length > 0) encodedString += '&';
+        encodedString += encodeURI(key + '=' + uri_param[key]);
+    });
     return encodedString;
 }
 
