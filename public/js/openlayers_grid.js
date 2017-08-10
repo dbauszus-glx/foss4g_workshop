@@ -1,4 +1,4 @@
-function Grid(_this) {
+module.exports = function Grid(_this) {
 
     _this.map.getView().on('change:resolution', function() {
         //console.log('pinch zoom or ol.control.Zoom zoom, but no one-finger drag');
@@ -51,34 +51,31 @@ function Grid(_this) {
     function gridStyle(feature) {
         let fp = feature.getProperties(),
             dot,
-            arrayStyle = _this.arrayStyle,
-            arraySize = _this.arraySize,
-            arrayColor = _this.arrayColor,
             c = fp.c,
             v = fp.v;
 
-        let size = c < arraySize[1] ? 7 :
-            c < arraySize[2] ? 8 :
-                c < arraySize[3] ? 9 :
-                    c < arraySize[4] ? 10 :
-                        c <= arraySize[5] ? 11 :
-                            c < arraySize[6] ? 12 :
-                                c < arraySize[7] ? 14 :
-                                    c < arraySize[8] ? 16 :
+        let size = c < _this.arraySize[1] ? 7 :
+            c < _this.arraySize[2] ? 8 :
+                c < _this.arraySize[3] ? 9 :
+                    c < _this.arraySize[4] ? 10 :
+                        c <= _this.arraySize[5] ? 11 :
+                            c < _this.arraySize[6] ? 12 :
+                                c < _this.arraySize[7] ? 14 :
+                                    c < _this.arraySize[8] ? 16 :
                                         18;
 
         if (v === null || v === 0 || isNaN(v)) {
-            dot = arrayStyle[0];
+            dot = _this.arrayStyle[0];
         } else {
-            dot = v < arrayColor[1] ? arrayStyle[0] :
-                v < arrayColor[2] ? arrayStyle[1] :
-                    v < arrayColor[3] ? arrayStyle[2] :
-                        v < arrayColor[4] ? arrayStyle[3] :
-                            v < arrayColor[5] ? arrayStyle[4] :
-                                v < arrayColor[6] ? arrayStyle[5] :
-                                    v < arrayColor[7] ? arrayStyle[6] :
-                                        v < arrayColor[8] ? arrayStyle[7] :
-                                            v <= arrayColor[9] ? arrayStyle[8] :
+            dot = v < _this.arrayColor[1] ? _this.arrayStyle[0] :
+                v < _this.arrayColor[2] ? _this.arrayStyle[1] :
+                    v < _this.arrayColor[3] ? _this.arrayStyle[2] :
+                        v < _this.arrayColor[4] ? _this.arrayStyle[3] :
+                            v < _this.arrayColor[5] ? _this.arrayStyle[4] :
+                                v < _this.arrayColor[6] ? _this.arrayStyle[5] :
+                                    v < _this.arrayColor[7] ? _this.arrayStyle[6] :
+                                        v < _this.arrayColor[8] ? _this.arrayStyle[7] :
+                                            v <= _this.arrayColor[9] ? _this.arrayStyle[8] :
                                                 null;
         }
 
@@ -259,6 +256,4 @@ function Grid(_this) {
         }
 
     }
-}
-
-module.exports = Grid;
+};
