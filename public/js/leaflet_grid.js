@@ -113,8 +113,6 @@ function gridLegend(_this){
 function drawGrid(_this, _data) {
     let avg_c = 0,
         avg_v = 0,
-        arrayColor = [],
-        arraySize = [],
         n = _data.length,
         dots = {
             type: "FeatureCollection",
@@ -158,18 +156,17 @@ function drawGrid(_this, _data) {
         step_lower = (avg - min) / 5,
         step_upper = (max - avg) / 4;
 
-    arraySize[0] = min;
-    arraySize[1] = min + step_lower;
-    arraySize[2] = min + (step_lower * 2);
-    arraySize[3] = min + (step_lower * 3);
-    arraySize[4] = min + (step_lower * 4);
-    arraySize[5] = avg;
-    arraySize[6] = avg + step_upper;
-    arraySize[7] = avg + (step_upper * 2);
-    arraySize[8] = avg + (step_upper * 3);
-    arraySize[9] = max;
-
-    _this.arraySize = arraySize;
+    _this.arraySize = [];
+    _this.arraySize[0] = min;
+    _this.arraySize[1] = min + step_lower;
+    _this.arraySize[2] = min + (step_lower * 2);
+    _this.arraySize[3] = min + (step_lower * 3);
+    _this.arraySize[4] = min + (step_lower * 4);
+    _this.arraySize[5] = avg;
+    _this.arraySize[6] = avg + step_upper;
+    _this.arraySize[7] = avg + (step_upper * 2);
+    _this.arraySize[8] = avg + (step_upper * 3);
+    _this.arraySize[9] = max;
 
     if (avg_v > 0) {
         min = getMath(_data, 'v', 'min');
@@ -177,20 +174,18 @@ function drawGrid(_this, _data) {
         avg = avg_v / n;
         step_lower = (avg - min) / 5;
         step_upper = (max - avg) / 4;
-
-        arrayColor[0] = min;
-        arrayColor[1] = min + step_lower;
-        arrayColor[2] = min + (step_lower * 2);
-        arrayColor[3] = min + (step_lower * 3);
-        arrayColor[4] = min + (step_lower * 4);
-        arrayColor[5] = avg;
-        arrayColor[6] = avg + step_upper;
-        arrayColor[7] = avg + (step_upper * 2);
-        arrayColor[8] = avg + (step_upper * 3);
-        arrayColor[9] = max;
+        _this.arrayColor = [];
+        _this.arrayColor[0] = min;
+        _this.arrayColor[1] = min + step_lower;
+        _this.arrayColor[2] = min + (step_lower * 2);
+        _this.arrayColor[3] = min + (step_lower * 3);
+        _this.arrayColor[4] = min + (step_lower * 4);
+        _this.arrayColor[5] = avg;
+        _this.arrayColor[6] = avg + step_upper;
+        _this.arrayColor[7] = avg + (step_upper * 2);
+        _this.arrayColor[8] = avg + (step_upper * 3);
+        _this.arrayColor[9] = max;
     }
-
-    _this.arrayColor = arrayColor;
 
     gridLegend(_this);
 
