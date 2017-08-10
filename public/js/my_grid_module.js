@@ -35,7 +35,7 @@ function Grid(_this) {
         document.getElementById(title).innerHTML = _this.queryFields[queryFieldKeys[0]];
         _this[query] = queryFieldKeys[0];
         document.getElementById(select).onchange = function () {
-            if (_this.layer) _this.map.removeLayer(_this.layer);
+            if (_this.layer) _this.layer.getSource().clear();
             document.getElementById(title).innerHTML = event.target.value;
             _this[query] = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
             getGridData(_this);
