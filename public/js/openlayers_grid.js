@@ -34,12 +34,12 @@ module.exports = function Grid(_this) {
         document.getElementById(select).innerHTML = entries;
         document.getElementById(title).innerHTML = _this.queryFields[queryFieldKeys[0]];
         _this[query] = queryFieldKeys[0];
-        document.getElementById(select).onchange = function () {
+        document.getElementById(select).addEventListener('change', function (e) {
             if (_this.layer) _this.layer.getSource().clear();
-            document.getElementById(title).innerHTML = event.target.value;
-            _this[query] = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === event.target.value);
+            document.getElementById(title).innerHTML = e.target.value;
+            _this[query] = Object.keys(_this.queryFields).find(key => _this.queryFields[key] === e.target.value);
             getGridData(_this);
-        };
+        });
     }
 
     document.getElementById('chkGridRatio').addEventListener('click', function () {
