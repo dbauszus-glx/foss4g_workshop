@@ -88,24 +88,20 @@ module.exports = function Grid(_this) {
     }
 
     function gridLegend(_this) {
-        let legend_text_v = document.getElementsByClassName('legend_text_v'),
-            fractionDigits = 0,
-            fractionMinutes = 1;
+        let fractionDigits = _this.calcRatio === true ? 2 : 0;
 
-        if (_this.calcRatio === true) fractionDigits = 2;
-
-        legend_text_v[0].innerHTML = (_this.arrayColor[1] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[1].innerHTML = (_this.arrayColor[2] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[2].innerHTML = (_this.arrayColor[3] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[3].innerHTML = (_this.arrayColor[4] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[4].innerHTML = (_this.arrayColor[5] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[5].innerHTML = (_this.arrayColor[6] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[6].innerHTML = (_this.arrayColor[7] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[7].innerHTML = (_this.arrayColor[8] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
-        legend_text_v[8].innerHTML = (_this.arrayColor[9] * fractionMinutes).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        let legend_text_v = document.getElementsByClassName('legend_text_v');
+        legend_text_v[0].innerHTML = (_this.arrayColor[1]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[1].innerHTML = (_this.arrayColor[2]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[2].innerHTML = (_this.arrayColor[3]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[3].innerHTML = (_this.arrayColor[4]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[4].innerHTML = (_this.arrayColor[5]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[5].innerHTML = (_this.arrayColor[6]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[6].innerHTML = (_this.arrayColor[7]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[7].innerHTML = (_this.arrayColor[8]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
+        legend_text_v[8].innerHTML = (_this.arrayColor[9]).toLocaleString('en-GB', {maximumFractionDigits: fractionDigits});
 
         let legend_text_c = document.getElementsByClassName('legend_text_c');
-
         legend_text_c[0].innerHTML = _this.arraySize[9].toLocaleString('en-GB', {maximumFractionDigits: 0});
         legend_text_c[1].innerHTML = _this.arraySize[5].toLocaleString('en-GB', {maximumFractionDigits: 0});
         legend_text_c[2].innerHTML = _this.arraySize[0].toLocaleString('en-GB', {maximumFractionDigits: 0});
