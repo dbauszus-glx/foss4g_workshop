@@ -11,7 +11,7 @@ function grid(req, res) {
         req.query.west + ', ' +
         req.query.south + ', ' +
         req.query.east + ', ' +
-        req.query.north + ', 4326), geom, 0) AND ' +
+        req.query.north + ', 4326), geomcntr, 0) AND ' +
         req.query.c + ' >= 1 LIMIT 10000';
     // console.log(q);
     db.any(q)
