@@ -47,6 +47,20 @@ router.get('/my_app', function (req, res) {
     }));
 });
 
+router.get('/foss4g', function (req, res) {
+    let _md = new md(req.headers['user-agent']),
+        platform_css =
+            (_md.mobile() === null || _md.tablet() !== null) ?
+                'foss4g_desktop.css' : 'foss4g_mobile.css';
+
+    res.send(jsr.templates('./views/foss4g.html').render({
+        engine_css: 'leaflet.css',
+        platform_css: platform_css,
+        engine_js: 'leaflet.js',
+        my_script_js: 'foss4g_bundle.js'
+    }));
+});
+
 router.get('/q_grid', grid.grid);
 
 module.exports = router;
