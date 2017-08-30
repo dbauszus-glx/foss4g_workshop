@@ -23,10 +23,36 @@ body {
     float: left;
     height: 100%;
     width: 330px;
-    padding: 0 10px;
-    overflow-y: auto;
+    padding: 0 10px 0 20px;
+    position: relative;
 }
 
 .spacer {
+    display: none;
+}
+
+#content {
+    height:100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+#scrollbar-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+}
+
+#scrollbar {
+    position: absolute;
+    width: 10px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#scrollbar:hover {
+    cursor: ns-resize;
+}
+
+::-webkit-scrollbar {
     display: none;
 }
