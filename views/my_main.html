@@ -12,6 +12,10 @@
     <div id="map" class="map"></div>
     <div class="spacer"></div>
     <div class="ctrl">
+        <div id="scrollbar-container">
+            <div id="scrollbar"></div>
+        </div>
+        <div id="content">
         <p>Hex grids help to visualise the demography of a country.</p>
         <p>Select below which indicators should be used for the size and colour of the grid cells.</p>
 
@@ -162,8 +166,44 @@
                 </a>
             </div>
         </div>
+        </div>
     </div>
 </body>
 <script type="application/javascript" src="js/{{:engine_js}}"></script>
 <script type="application/javascript" src="js/build/{{:my_script_js}}"></script>
+<script type="application/javascript">
+    let doc = document.getElementById.bind(document),
+        container = doc('scrollbar-container'),
+        content = doc('content'),
+        scrollBar = doc('scrollbar'),
+        scrollEvent = new Event('scroll');
+
+    content.addEventListener('scroll', function () {
+        scrollBar.style.height = container.clientHeight * content.clientHeight / content.scrollHeight + 'px';
+        scrollBar.style.top = container.clientHeight * content.scrollTop / content.scrollHeight + 'px';
+    });
+
+    window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
+    content.dispatchEvent(scrollEvent);
+
+    scrollBar.addEventListener('mousedown', function (eDown) {
+        eDown.preventDefault();
+        let scrollBar_offsetTop = scrollBar.offsetTop,
+            eDown_pageY = eDown.pageY,
+            onMove = function (eMove) {
+                scrollBar.style.top = Math.min(
+                        container.clientHeight - scrollBar.clientHeight,
+                        Math.max(
+                            0,
+                            scrollBar_offsetTop + eMove.pageY - eDown_pageY
+                        )
+                    ) + 'px';
+                content.scrollTop = (content.scrollHeight * scrollBar.offsetTop / container.clientHeight);
+            };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', function () {
+            document.removeEventListener('mousemove', onMove);
+        });
+    });
+</script>
 </html>
